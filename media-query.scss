@@ -1,0 +1,73 @@
+/*
+Ugy tudjuk beágyazni a media-query-t, hogy azt mondjuk media screen ->
+
+Azt jelenti, hogy 1080px-elen vagy az alatt a container-nek 720px a szélessége
+ez is egyfajta beágyazás 
+*/
+
+.container {
+    width: 1080px;
+    margin: 15px auto; /*hogy középen legyen*/
+
+    @media screen and (max-width: 1080px) {
+        width: 720px;
+    }
+}
+
+/*
+lefordítottuk css-re megjelent a media-query.css.ben
+.container {
+  width: 1080px;
+  margin: 15px auto;
+}
+@media screen and (max-width: 1080px) {
+  .container {                              !!ezt az egy sortsporoltuk, hogy itt scssben csináltuk
+    width: 720px;
+  }
+}
+nav.html-ben hívatlozunk a media-query.css-re (link)
+
+belerakjuk az egész navigaciós menüt egy div-be, aminek megadjuk, ezt a container class-t, amit itt csináltunk 
+és még ide a container-nek azt mondjuk, hogy margin: 15px auto a width alá, hogy középen legyen 
+
+Alapból 1080px a navigációs menü (egész képernyő szélessége mondjuk kb. 1280px), 
+de ha húzzuk össze a képernyőt és elérjük a 1080px-et és húzzuk tovább,
+akkor bemegy 720px-elesre a navigációs menü 
+*/
+
+/*
+ha itt csináljuk scss-ben akkor kicsit több kódot irunk, de olyan szempontból meg jó, hogy 
+közelebbre van egymáshoz az osztály és a rá vonatkozó media-query szabály -> könnyebbmegtalálhatóság 
+*/
+
+.container-large {
+    width: 1200px;
+    margin: 15px auto;
+
+    @media screen and (max-width: 1200px) {
+        width: 1080px;
+    }
+
+    @media screen and (max-width: 1080px) {
+        width: 720px;
+    }
+}
+
+/*
+cssben teljesen külön fogja rakni őket a két media screen amiket itt felül csináltunk ->
+
+.container-large {
+  width: 1200px;
+  margin: 15px auto;
+}
+@media screen and (max-width: 1200px) {
+  .container-large {
+    width: 1080px;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .container-large {
+    width: 720px;
+  }
+}
+*/

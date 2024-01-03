@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.container {
+  width: 1080px;
+  margin: 15px auto; /*hogy középen legyen*/
+}
+@media screen and (max-width: 1080px) {
+  .container {
+    width: 720px;
+  }
+}
+
+.container-large {
+  width: 1200px;
+  margin: 15px auto;
+}
+@media screen and (max-width: 1200px) {
+  .container-large {
+    width: 1080px;
+  }
+}
+@media screen and (max-width: 1080px) {
+  .container-large {
+    width: 720px;
+  }
+}
+
+/*# sourceMappingURL=media-query.css.map */

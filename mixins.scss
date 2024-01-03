@@ -1,0 +1,69 @@
+@mixin box {
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+}
+
+.green-box {
+    @include box; //ezzel kapja meg a @mixin box tulajdonságait, olyan mint a placeholdernél az extend 
+    background-color: green;
+}
+
+.blue-box {
+    @include box;
+    background-color: blue;
+}
+/*kicsit máshogy fog müködni, mert csak bemásolja a tulajdonságokat, ahelyett, hogy a közös tulajdonságokat egymás mellé írná 
+placeholderes változatnál kevesebb lesz a kód, mert egy sorban szerepelnek az azonos értékek a mixin-nél nem 
+ott csak egyszerűen bemásolta őket 
+->
+Ennek az az oka, hogy a mixin sok esetben, ugy müködik, mint egy eljárás tudunk neki paramétereket adni
+szoval, ha most mi helyesen akartunk volna eljárni, akkor csinálunk egy mixin createBox-ot, kicsit aljább lesz 
+*/
+
+/*
+.green-box {
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+  background-color: green;
+}
+
+.blue-box {
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+  background-color: blue;
+}
+
+ez meg a placeholdernél ->
+.blue-input, .green-input {
+  padding: 8px;
+}
+
+.blue-input:focus, .green-input:focus {
+  outline: 0;
+*/
+
+@mixin createBox($height, $width, $bgColor, $name) {
+    .#{$name}-box {
+        width: $width; //ez nem olyan, felsorolás, mint egy objektumban, tehát nem vesszővel van elválasztv, hanem pontosvesszővel, mint css-ben
+        height: $height;
+        background-color: $bgColor;
+        margin: 15px; //hogy ezt már ne kelljen beírnunk, oda felül
+    }
+}
+
+/*
+vár négy darabb tulajdonságot, a negyedik, hogy hogyan nevezzük ezt a dolgot 
+*/
+//itt hívjuk meg a createBox-ot, olyan értékekkel, amilyeket szeretnénk 
+@include createBox(150px, 150px, blue, "blue");
+@include createBox(200px, 300px, red, "red");
+
+/*
+Az a különbség a mixin és a placeholder között, hogy a mixin-vel általában véve mi eljárásként szeretnénk bánni 
+és letre szeretnénk hozni különböző paraméterekkel valamilyen osztályokat 
+*/
+
+//következő a function.scss

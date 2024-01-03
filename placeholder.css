@@ -1,0 +1,31 @@
+@charset "UTF-8";
+/*
+Placeholdernél egy közös szabálygyüjtemény 
+*/
+.blue-input, .green-input {
+  padding: 8px;
+}
+
+.blue-input:focus, .green-input:focus {
+  outline: 0;
+}
+
+.green-input {
+  background-color: lightgreen;
+  border: 1px solid rgb(0, 160, 0);
+}
+
+.green-input:focus {
+  border: 1px solid rgb(0, 129, 0);
+}
+
+.blue-input {
+  background-color: lightblue;
+  border: 1px solid rgb(133, 166, 176);
+}
+
+.blue-input:focus {
+  border: 1px solid rgb(99, 123, 130);
+}
+
+/*# sourceMappingURL=placeholder.css.map */

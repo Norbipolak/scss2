@@ -1,0 +1,121 @@
+/*
+function-nek az a lényege, hogy van visszatérési értéke is
+*/
+
+@function double($number) {
+    @return $number * 2;
+}
+
+/*vissza tudjuk kapni egy változóba ezt az értéket 
+az a különbség, hogy függvénynél visszakapásánál mindig kell változó csinálni, ha meg szeretnénk kapni az értékét 
+és ezt a változóz fogjuk kiírni a console.log()-val vagy itt a @debug-val
+eljárás meghívásánál ez nem szükséges
+*/
+
+$num:double(8); //nincsen "=" hanem ":" van és mindig kell a dollárjel ($), return, function, extend, include, debug stb elé pedig a (@)
+@debug "num: " + $num; //Debug: num: 16, ugy tudunk konzolra kiírni, hogy sass functions.scss a node helyett 
+
+/***********************************************************************************************************************************/
+
+/*
+    String függvények 
+*/
+
+$str:"anni tejet inna";
+//karakterszámát az str-length nevű függvénnyel tudjuk visszakapni
+$length:str-length($str);
+@debug "length: " + $length; // ezt kapjuk vissza a @debug-ra -> function.scss:27 Debug: length: 15
+
+/*
+Van nekünk egy stringünk és szeretnénk valahova belerakni egy értéket -> str-insert
+3 paramétert vár 
+1. paraméter -> maga a string neve, ahova be szeretnénk rakni valamit 
+2. paraméter -> hogy, mit szeretnénk belerakni, ""-vel 
+3. paraméter -> az index, hogy hányadik indextől kezdödjön a stringben az a dolog amit be szeretnénk rakni
+be fogja szúrni a második indextől az "asdf"-et 
+*/
+$inserted:str-insert($str, "asdf", 2);
+@debug "inserted: " + $inserted; //aasdfnni tejet inna
+
+/*
+Azt is meg tudjuk mondani, hogy egy bizonyos érték hányadik indextől kezdödik -> str-index
+pl. a tejet szó hányadik indextől indul
+*/
+$index:str-index($str, "tejet");
+@debug "index: " + $index; //function.scss:45 Debug: index: 6, egytől számolunk 
+
+/*
+Kivágni egy részletet a stringből -> str-slice
+3 paramétert fogad 
+1. paraméter -> a string amiből ki szeretnénk vágni egy részletet
+2. paraméter -> start, hogy hányadik indextől induljon 
+3. paraméter -> end, hogy hányadik indexig menjen (benne van az utolsó karakter is)
+*/
+$sliced:str-slice($str, 1, 4);
+@debug "sliced: " + $sliced; //function.scss:55 Debug: sliced: anni
+
+/*
+Tudunk upperCase-lni is -> to-upper-case (itt már nem str-..)
+lowerCase -> to-lower-case
+*/
+$upper:to-upper-case($str);
+@debug "upper: " + $upper; //function.scss:61 Debug: upper: ANNI TEJET INNA
+
+$lower:to-lower-case("ANNI TEJET INNA");
+@debug "lower: " + $lower; //function.scss:65 Debug: lower: anni tejet inna
+
+/*
+Még van a quote és az unquote -> str-unquote 
+*/
+$unquote:unquote("15px");
+//ha beírjuk, hogy 15px stringben, akkor vissza tudjuk kapni 15px-elt mértékegységben 
+@debug "unquote: " + $unquote; //function.scss:72 Debug: unquote: 15px
+
+/*
+Ha csinálunk egy px válozót, aminek az értéke egy string és ezt megadjuk késöbb egy classnak, akkor ->
+*/
+$px: "15px";
+
+.my-class {
+    //width: $px; // ha ezt lefordítanánk css-re akkor így írná be width: "15px"; de ha azt mondjuk, hogy unquote 
+    width:unquote($px); // ha lefordítjuk, akkor beírja jól, hogy width: 15px;
+    font-weight: quote(bold); //jóból csinál rosszat mert ez lesz -> "bold"
+    /*
+    olyan mint a toString(), ha nem stringet paramétert adunk meg és szeretnénk belőle stringet csinálni 
+
+    */
+}
+
+/*
+unquote-val tudunk stringekből mindenféle css mértékegységeket csinálni és valid css szintaltikájú adatokat írni
+********************************************************************************************************************/
+/*
+Matematikai függvények 
+*/
+
+$rounded:round(5.5);
+@debug "rounded: " + $rounded; //function.scss:97 Debug: rounded: 6
+
+$ceiled:ceil(5.1);
+@debug "ceiled: " + $ceiled; //function.scss:100 Debug: ceiled: 6
+
+$floored:floor(6.9);
+@debug "floored: " + $floored; //function.scss:103 Debug: floored: 6
+
+$powed:pow(2, 4);//kettő a negyediken 
+@debug "powed: " + $powed; //function.scss:106 Debug: powed: 16
+
+/*
+Ki tudjuk egy listából választani a minimumot és a maximumot 
+*/
+//$list1:1,2,3,4,5,6,7,8,9,10; //ezt így nem tudjuk, csak felsorolással ->
+//$min:min($list1);
+//$max:max($list1);
+$min:min(1,2,3,4,5,6,7,8,9,10);
+$max:max(1,2,3,4,5,6,7,8,9,10);
+@debug "min: " + $min; //function.scss:116 Debug: min: 1
+@debug "max: " + $max; //function.scss:117 Debug: max: 10
+
+
+
+

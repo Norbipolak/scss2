@@ -1,0 +1,70 @@
+/*
+Nesting -> beágyazott kód 
+
+normál esetben az scc-ben így nézne ki
+
+ul {
+
+}
+
+ul li {  -> ul-en belüli li tag-re hívatkozunk 
+
+}
+
+scss-ben ez így is lehet
+*/
+
+ul {
+    padding: 0;
+
+    li {
+        list-style-type: decimal;
+    }
+}
+/*
+Ha lefordítjuk, így fog megjelenni a css-ben
+
+ul {
+  padding: 0;
+}
+ul li {
+  list-style-type: decimal;
+}
+*/
+
+/*Ha ilyen módon szeretnénk nestingvel megoldani egy navigációs menüt ->*/
+
+nav {
+    height: 80px;
+    background-color: #123456;
+    border-bottom: #081625;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        
+        li {
+            list-style: none;
+            height: 80px;
+            line-height: 80px;
+            &:hover { /*& -> parent-selector ->ez itt ugyanaz mintha azt írnánk, hogy li:hover {} li-re a szűlőelemre vontakozik*/
+                background-color: #123456;
+            }
+
+            a {
+                color: white;
+                padding: 15px;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+/*
+Miután ezt lefordítottuk, akkor kapunk egy szintaktikailag helyes kódot a scc-ben 
+és ezután csinálunk egy nav.htmlt 
+
+Mennyire, hasznos -> ha sok dolog van akkor kezd olvashatatlanná válni, de két-három szintig nem rossz megoldás
+*/

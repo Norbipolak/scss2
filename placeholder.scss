@@ -1,0 +1,56 @@
+/*
+Placeholdernél egy közös szabálygyüjtemény 
+*/
+
+%input {
+    padding: 8px;
+
+}
+%input:focus {
+    outline:0; //removes the outline when that element is in focus
+}
+
+.green-input {
+    @extend %input; //megkapja az összes tulajdonságát a %inputtól 
+    background-color: lightgreen;
+    border: 1px solid rgb(0, 160, 0);
+}
+.green-input:focus {
+    border: 1px solid rgb(0, 129, 0);
+}
+.blue-input {
+    @extend %input;
+    background-color: lightblue;
+    border: 1px solid rgb(133, 166, 176);
+}
+.blue-input:focus {
+    border: 1px solid rgb(99, 123, 130);
+}
+
+/*
+Ahova azt irtuk, hogy @extend %input, akkor azok a tulajdonságok, amik benne vannak 
+vonatkozni fognak a .green-input és a .blue-input-ra is 
+
+css-ben azok a szabályok amit megadtunk a %inputnak vonatkozni fognak mindkettőre
+.blue-input, .green-input { felsorolja itt a classakat, a külön tulajdonságokat meg külön veszi -> placeholder.css
+  padding: 8px;
+}
+
+.blue-input:focus, .green-input:focus {
+  outline: 0;
+}
+
+csinálunk egy inputs.html-t, ahova belinkeljük a <link rel="stylesheet" href="placeholder.css">
+
+<body>
+    <input type="text" class="blue-input">
+    <input type="text" class="green-input">
+</body>
+
+megnéztük a két input mezőt és ha belekattintottunk a focus miatt megváltozott a színe a borderének
+*/
+
+/*
+Placeholder alternatívája a mixins, csak kicsit más esetekben használható
+csinálunk egy mixins.scss-t
+*/
